@@ -40,6 +40,10 @@ int MinInTree(Node* root){
     int rmin=MinInTree(root->right);
     return min(root->val,min(lmin,rmin));
 }
+int levels(Node* root){
+    if (root==0) return 0;
+    return 1 + max(levels(root->left),levels(root->right));
+}
 int main(){
     Node* a=new Node(1);
     Node* b=new Node(2);
@@ -60,4 +64,6 @@ int main(){
     cout<<"size is : " << size(a)<< endl;
     cout<<"MaxInTree is : " << MaxInTree(a)<< endl;
     cout<<"MinInTree is : " << MinInTree(a)<< endl;
+    cout<<"Levels are : " << levels(a)<< endl;
+    cout<<"Height is  : " << levels(a)-1<< endl;
 }
