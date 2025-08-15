@@ -13,7 +13,7 @@ public:
     }
 };
 
-// Invert function (correct signature)
+// Invert function 
 Node* invertTree(Node* root) {
     if (root == NULL) return NULL;
     Node* temp = root->left;
