@@ -19,6 +19,7 @@ void nthLevel(Node * root,int cur,int level){
 
     if(cur==level){
         cout<<root->val<<" ";
+        return;
     }
     nthLevel(root->left,cur+1,level);  
     nthLevel(root->right,cur+1,level); 
