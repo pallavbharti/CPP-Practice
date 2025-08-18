@@ -70,7 +70,5 @@ int main(){
     // Get and print all root-to-leaf paths
     vector<string> paths = binaryTreePaths(a);
     cout << "Root-to-leaf paths:\n";
-    for(string x : paths){
-        cout << x << "\n";
-    }
+    
 }
