@@ -1,52 +1,54 @@
-/* Binary Tree Path [Leetcode:257]
-Given the root of a binary tree, return all root-to-leaf paths in any order.
-A leaf is a node with no children.*/
-/* Binary Tree Path [Leetcode:257]
-Given the root of a binary tree, return all root-to-leaf paths in any order.
-A leaf is a node with no children.*/
-#include<iostream>
-#include<vector>
-#include<string>
+//              [ LEETCODE : 113 ]
+#include <iostream>
+#include <vector>
 using namespace std;
 
-class Node{
+class Node {
 public:
     int val;
     Node* left;
     Node* right;
-    Node(int val){
+    Node(int val) {
         this->val = val;
         this->left = NULL;
         this->right = NULL;
     }
 };
 
-void helper(Node* root, string s, vector<string> &ans){
-    if(root == NULL) return;
-    string a = to_string(root->val);
-    if(root->left == NULL && root->right == NULL){
-        s += a;
-        ans.push_back(s);
+void helper(Node* root, vector<int> v, vector<vector<int>>& ans, int sum) {
+    // base case
+    if (root == NULL) return;
+
+    // if leaf and sum matched, push path
+    if (root->left == NULL && root->right == NULL) {
+        if (root->val == sum) {
+            v.push_back(root->val);
+            ans.push_back(v);
+        }
         return;
     }
-    helper(root->left, s + a + "->", ans);
-    helper(root->right, s + a + "->", ans);
+
+    // otherwise, add current node value and recurse
+    v.push_back(root->val);
+    helper(root->left, v, ans, sum - root->val);
+    helper(root->right, v, ans, sum - root->val);
 }
 
-vector<string> binaryTreePaths(Node* root) {
-    vector<string> ans;
-    helper(root, "", ans);
+vector<vector<int>> pathSum(Node* root, int targetSum) {
+    vector<vector<int>> ans;
+    vector<int> v;
+    helper(root, v, ans, targetSum);
     return ans;
 }
 
-void display(Node * root){
+void display(Node* root) {
     if (root == NULL) return;
     cout << root->val << " ";
     display(root->left);
     display(root->right);
 }
 
-int main(){
+int main() {
     Node* a = new Node(1);
     Node* b = new Node(2);
     Node* c = new Node(3);
@@ -67,8 +69,18 @@ int main(){
     display(a);
     cout << "\n";
 
-    // Get and print all root-to-leaf paths
-    vector<string> paths = binaryTreePaths(a);
-    cout << "Root-to-leaf paths:\n";
+    vector<vector<int>> paths = pathSum(a, 7);
+
+    if(paths.empty())
+    cout << "No paths found with the given sum.\n";
     
+else {
+    cout << "Root-to-leaf paths with sum=23:\n";
+    for (auto &path : paths) {
+        for (int val : path) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+    }
 }
