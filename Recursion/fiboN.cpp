@@ -7,7 +7,7 @@ int fibo(int n){
 
 int main(){
     int n ;
-    cout<<"enter number : " ;
+    cout<<"Enter Number : " ;
     cin>>n;
     int f = fibo(n);
     cout<<"fibonacci : "<<f;
