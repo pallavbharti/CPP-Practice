@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-void printsubsequence(int arr[],int n ,int idx,vector<int>ans ,int k){
+void printsubsequence(int arr[],int n ,int idx,vector<int>&ans ,int k){
     if(idx==n){
         if(ans.size()==k){
             for (int i = 0; i < ans.size(); i++)
@@ -18,6 +18,7 @@ void printsubsequence(int arr[],int n ,int idx,vector<int>ans ,int k){
     printsubsequence(arr,n,idx+1,ans,k);
     ans.push_back(arr[idx]);
     printsubsequence(arr,n,idx+1,ans,k);
+    ans.pop_back();
 }
 
 
